@@ -1,8 +1,12 @@
-"use client"; 
-import Link from "next/link"; // Use Link for navigation
+"use client";
+import Link from "next/link";
 
-import React, { useState } from 'react';
-import { HiOutlineCalendar, HiOutlineStar, HiOutlineTemplate } from 'react-icons/hi'; 
+import React, { useState } from "react";
+import {
+  HiOutlineCalendar,
+  HiOutlineStar,
+  HiOutlineTemplate,
+} from "react-icons/hi";
 
 const Menubar = () => {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
@@ -12,7 +16,6 @@ const Menubar = () => {
       <div className="container mx-auto flex justify-between items-center p-4">
         <div className="text-lg font-bold">WebShop</div>
         <div className="hidden md:flex space-x-6">
-          
           <div className="relative">
             <button
               className="hover:bg-gray-700 mr-6 px-3 py-2 rounded-md"
@@ -21,34 +24,29 @@ const Menubar = () => {
               Settings ⚙️
             </button>
 
-            {/* Dropdown Menu */}
             {isSettingsOpen && (
               <ul className="absolute mt-2 bg-white text-black rounded-md shadow-lg w-48">
                 <li className="p-2 hover:bg-gray-200 flex items-center">
                   <HiOutlineCalendar className="mr-2" />
-                  <a href="#">Holiday List</a>
+                  <Link href="/settings/holidaylist">Holiday List</Link>
                 </li>
                 <li className="p-2 hover:bg-gray-200 flex items-center">
-                  <HiOutlineStar className="mr-2" /> 
-                  <Link href="/settings/specialization">
-                    Specialization
-                  </Link>
+                  <HiOutlineStar className="mr-2" />
+                  <Link href="/settings/specialization">Specialization</Link>
                 </li>
                 <li className="p-2 hover:bg-gray-200 flex items-center">
-                  <HiOutlineTemplate className="mr-2" /> 
+                  <HiOutlineTemplate className="mr-2" />
                   <a href="#">Template Manager</a>
                 </li>
                 <li className="p-2 hover:bg-gray-200 flex items-center">
-                  <HiOutlineTemplate className="mr-2" /> 
-                  <a href="/settings/admin">Admin Settings</a>
+                  <HiOutlineTemplate className="mr-2" />
+                  <Link href="/settings/admin">Admin Settings</Link>
                 </li>
-               
               </ul>
             )}
           </div>
         </div>
 
-       
         <button
           onClick={() => setIsSettingsOpen(!isSettingsOpen)}
           className="md:hidden text-white"
@@ -70,7 +68,6 @@ const Menubar = () => {
         </button>
       </div>
 
-      
       {isSettingsOpen && (
         <div className="md:hidden bg-white text-black">
           <div className="p-2">
@@ -79,23 +76,20 @@ const Menubar = () => {
             </button>
             <ul className="pl-4">
               <li className="p-2 hover:bg-gray-100 flex items-center">
-                <HiOutlineCalendar className="mr-2" /> 
-                Holiday List
+                <HiOutlineCalendar className="mr-2" />
+                <Link href="/settings/holidaylist">Holiday List</Link>
               </li>
               <li className="p-2 hover:bg-gray-100 flex items-center">
-                <HiOutlineStar className="mr-2" /> 
-                <Link href="/settings/specialization">
-                  Specialization
-                </Link>
+                <HiOutlineStar className="mr-2" />
+                <Link href="/settings/specialization">Specialization</Link>
               </li>
               <li className="p-2 hover:bg-gray-100 flex items-center">
-                <HiOutlineTemplate className="mr-2" /> 
+                <HiOutlineTemplate className="mr-2" />
                 Template Manager
               </li>
               <li className="p-2 hover:bg-gray-100 flex items-center">
-                <HiOutlineTemplate className="mr-2" /> 
-                <Link href="/settings/admin">
-                Admin Settings</Link>
+                <HiOutlineTemplate className="mr-2" />
+                <Link href="/settings/admin">Admin Settings</Link>
               </li>
             </ul>
           </div>
