@@ -21,13 +21,6 @@ const HolidayList = () => {
     localStorage.setItem("holidays", JSON.stringify(holidays));
   }, [holidays]);
 
-  const getUniqueYears = () => {
-    const years = holidays.map((holiday) =>
-      new Date(holiday.date).getFullYear()
-    );
-    return [...new Set(years)];
-  };
-
   const addHoliday = () => {
     const holidayYear = new Date(newHolidayDate).getFullYear();
     const newHoliday = {
@@ -61,8 +54,11 @@ const HolidayList = () => {
     setEditingIndex(index);
   };
 
+  // Filter holidays by the selected year
   const filteredHolidays = selectedYear
-    ? holidays.filter((holiday) => holiday.year === parseInt(selectedYear))
+    ? holidays.filter(
+        (holiday) => holiday.year === parseInt(new Date(selectedYear).getFullYear())
+      )
     : holidays;
 
   return (
@@ -74,18 +70,14 @@ const HolidayList = () => {
           <label className="block text-lg font-medium">
             Select Holiday Year:
           </label>
-          <select
+          {/* Updated input type to "month" but will display only the year part */}
+          <input
+            type="month"
             value={selectedYear}
             onChange={(e) => setSelectedYear(e.target.value)}
             className="border border-gray-300 p-2 rounded w-full"
-          >
-            <option value="">All</option>
-            {getUniqueYears().map((year) => (
-              <option key={year} value={year}>
-                {year}
-              </option>
-            ))}
-          </select>
+            placeholder="Select year"
+          />
         </div>
 
         <div className="w-full max-w-md mb-6">

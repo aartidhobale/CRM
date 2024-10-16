@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Menubar from "../components/Menubar";
 import { SignUpSchema } from "../schema";
 
 const SignUpForm = () => {
+  const { push } = useRouter();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -24,6 +26,8 @@ const SignUpForm = () => {
       console.log("Form data is valid:", result.data);
 
       alert("Sign up successful!");
+
+      push("/login");
 
       localStorage.setItem("signUpData", JSON.stringify(formData));
 
@@ -48,6 +52,7 @@ const SignUpForm = () => {
       [e.target.name]: e.target.value,
     });
   };
+
 
   return (
     <>
