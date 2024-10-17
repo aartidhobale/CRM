@@ -54,7 +54,7 @@ const HolidayList = () => {
     setEditingIndex(index);
   };
 
-  // Filter holidays by the selected year
+
   const filteredHolidays = selectedYear
     ? holidays.filter(
         (holiday) => holiday.year === parseInt(new Date(selectedYear).getFullYear())
@@ -70,7 +70,7 @@ const HolidayList = () => {
           <label className="block text-lg font-medium">
             Select Holiday Year:
           </label>
-          {/* Updated input type to "month" but will display only the year part */}
+        
           <input
             type="month"
             value={selectedYear}

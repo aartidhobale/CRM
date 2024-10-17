@@ -2,14 +2,7 @@
 
 import Menubar from "@/app/components/Menubar";
 import React, { useState } from "react";
-import { z } from "zod"; // Import Zod
-
-// Define schema directly in this file
-const AdminSchema = z.object({
-  name: z.string().min(1, "Name is required").regex(/^[A-Za-z\s]+$/, "Name must contain only letters and spaces"),
-  mobile: z.string().length(10, "Mobile number must be 10 digits").regex(/^\d{10}$/, "Mobile number must be digits only"),
-  email: z.string().email("Invalid email address"),
-});
+import { AdminSchema } from "../../schema"; 
 
 const Admin = () => {
   const [name, setName] = useState("");
@@ -27,7 +20,7 @@ const Admin = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validate form data using AdminSchema
+    
     const validation = AdminSchema.safeParse({ name, mobile, email });
     if (!validation.success) {
       const fieldErrors = validation.error.format();
@@ -80,7 +73,10 @@ const Admin = () => {
           className="bg-gray-100 p-4 rounded-lg shadow-md max-w-lg mx-auto"
         >
           <div className="mb-4">
-            <label className="block text-gray-700 font-semibold mb-2" htmlFor="name">
+            <label
+              className="block text-gray-700 font-semibold mb-2"
+              htmlFor="name"
+            >
               Name
             </label>
             <input
@@ -88,14 +84,19 @@ const Admin = () => {
               id="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className={`w-full px-3 py-2 border ${errors.name ? "border-red-500" : "border-gray-300"} rounded-md`}
+              className={`w-full px-3 py-2 border ${
+                errors.name ? "border-red-500" : "border-gray-300"
+              } rounded-md`}
               required
             />
             {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
           </div>
 
           <div className="mb-4">
-            <label className="block text-gray-700 font-semibold mb-2" htmlFor="mobile">
+            <label
+              className="block text-gray-700 font-semibold mb-2"
+              htmlFor="mobile"
+            >
               Mobile
             </label>
             <input
@@ -103,14 +104,19 @@ const Admin = () => {
               id="mobile"
               value={mobile}
               onChange={(e) => setMobile(e.target.value)}
-              className={`w-full px-3 py-2 border ${errors.mobile ? "border-red-500" : "border-gray-300"} rounded-md`}
+              className={`w-full px-3 py-2 border ${
+                errors.mobile ? "border-red-500" : "border-gray-300"
+              } rounded-md`}
               required
             />
             {errors.mobile && <p className="text-red-500 text-sm">{errors.mobile}</p>}
           </div>
 
           <div className="mb-4">
-            <label className="block text-gray-700 font-semibold mb-2" htmlFor="email">
+            <label
+              className="block text-gray-700 font-semibold mb-2"
+              htmlFor="email"
+            >
               Email
             </label>
             <input
@@ -118,17 +124,28 @@ const Admin = () => {
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className={`w-full px-3 py-2 border ${errors.email ? "border-red-500" : "border-gray-300"} rounded-md`}
+              className={`w-full px-3 py-2 border ${
+                errors.email ? "border-red-500" : "border-gray-300"
+              } rounded-md`}
               required
             />
             {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
           </div>
 
           <div className="mb-4">
-            <label className="block text-gray-700 font-semibold mb-2" htmlFor="photo">
+            <label
+              className="block text-gray-700 font-semibold mb-2"
+              htmlFor="photo"
+            >
               Upload Photo
             </label>
-            <input type="file" id="photo" accept="image/*" onChange={handlePhotoChange} className="w-full px-3 py-2" />
+            <input
+              type="file"
+              id="photo"
+              accept="image/*"
+              onChange={handlePhotoChange}
+              className="w-full px-3 py-2"
+            />
             {photoPreview && (
               <div className="mt-4">
                 <p>Photo Preview:</p>
@@ -138,10 +155,17 @@ const Admin = () => {
           </div>
 
           <div className="flex space-x-4">
-            <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+            <button
+              type="submit"
+              className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+            >
               Submit
             </button>
-            <button type="button" onClick={handleReset} className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">
+            <button
+              type="button"
+              onClick={handleReset}
+              className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
+            >
               Cancel
             </button>
           </div>

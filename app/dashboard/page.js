@@ -11,7 +11,7 @@ const Dashboard = () => {
   
   useEffect(() => {
     if (!isAuthenticated) {
-      // If the user is not authenticated, redirect to login
+      
       router.push("/login");
     }
   }, [isAuthenticated, router]);

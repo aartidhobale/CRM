@@ -27,7 +27,10 @@ const LoginForm = () => {
 
       if (storedUser) {
         const user = JSON.parse(storedUser);
-        if (user.email === formData.email && user.password === formData.password) {
+        if (
+          user.email === formData.email &&
+          user.password === formData.password
+        ) {
           alert("Login Successful!");
 
           localStorage.setItem("isLoggedIn", "true");
@@ -58,12 +61,11 @@ const LoginForm = () => {
     if (storedUser) {
       const user = JSON.parse(storedUser);
       if (user.email === resetPasswordData.email) {
-        // Update password
         user.password = resetPasswordData.newPassword;
         localStorage.setItem("signUpData", JSON.stringify(user));
 
         alert("Password successfully reset! You can now log in.");
-        setIsForgotPassword(false); // Redirect to login
+        setIsForgotPassword(false);
       } else {
         alert("User not found with this email.");
       }
@@ -150,7 +152,6 @@ const LoginForm = () => {
           </div>
         </form>
       ) : (
-        // Forgot Password Form
         <form
           onSubmit={handleResetPasswordSubmit}
           className="p-6 m-5 max-w-md mx-auto bg-gray-100 shadow-md rounded-lg"

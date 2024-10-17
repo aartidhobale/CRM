@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Menubar from "../components/Menubar";
-import { SignUpSchema } from "../schema";
+import { SignUpSchema } from "../schema.ts";
 
 const SignUpForm = () => {
   const { push } = useRouter();

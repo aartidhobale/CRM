@@ -2,10 +2,18 @@ import { useState } from "react";
 import { z } from "zod";
 
 export const AdminSchema = z.object({
-  name: z.string().min(1, "Name is required").regex(/^[A-Za-z\s]+$/, "Name must contain only letters and spaces"),
-  mobile: z.string().length(10, "Mobile number must be exactly 10 digits").regex(/^\d{10}$/, "Mobile number must be digits only"),
+  name: z
+    .string()
+    .min(1, "Name is required")
+    .regex(/^[A-Za-z\s]+$/, "Name must contain only letters and spaces"),
+  mobile: z
+    .string()
+    .min(10, "Mobile number must be  10 digits")
+    .max(10, "Mobile number must be  10 digits")
+    .regex(/^\d{10}$/, "Mobile number must contain only digits"),
   email: z.string().email("Invalid email address"),
 });
+
 export const SignUpSchema = z
   .object({
     firstName: z
@@ -30,7 +38,8 @@ export const SignUpSchema = z
     message: "Passwords must match",
   });
 
-export const LoginSchema = z.object({
+export const LoginSchema = z
+.object({
   email: z
     .string()
     .email("Invalid email address")

@@ -14,7 +14,6 @@ const Menubar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const router = useRouter();
 
-  // Check if the user is logged in when the component mounts
   useEffect(() => {
     const loggedInStatus = localStorage.getItem("isLoggedIn");
     if (loggedInStatus === "true") {
@@ -22,12 +21,11 @@ const Menubar = () => {
     }
   }, []);
 
-  // Logout function
   const handleLogout = () => {
-    localStorage.removeItem("isLoggedIn"); // Remove login status from localStorage
+    localStorage.removeItem("isLoggedIn");
     alert("You have been logged out.");
-    setIsLoggedIn(false); // Update the state to logged out
-    router.push("/login"); // Redirect to login page
+    setIsLoggedIn(false);
+    router.push("/login");
   };
 
   return (
@@ -88,7 +86,6 @@ const Menubar = () => {
           </div>
         )}
 
-        {/* Mobile menu button */}
         <button
           onClick={() => setIsSettingsOpen(!isSettingsOpen)}
           className="md:hidden text-white"
