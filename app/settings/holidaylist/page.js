@@ -2,10 +2,11 @@
 
 import Menubar from "@/app/components/Menubar";
 import React, { useState, useEffect } from "react";
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 
 const HolidayList = () => {
   const [holidays, setHolidays] = useState([]);
-  const [selectedYear, setSelectedYear] = useState("");
+  const [selectedYear, setSelectedYear] = useState(""); // Year Picker
   const [newHolidayName, setNewHolidayName] = useState("");
   const [newHolidayDate, setNewHolidayDate] = useState("");
   const [editingIndex, setEditingIndex] = useState(null);
@@ -54,10 +55,21 @@ const HolidayList = () => {
     setEditingIndex(index);
   };
 
+  // Generate a list of years for the year picker
+  const generateYearOptions = () => {
+    const currentYear = new Date().getFullYear();
+    const startYear = currentYear - 10;
+    const endYear = currentYear + 10;
+    const years = [];
+    for (let year = startYear; year <= endYear; year++) {
+      years.push(year);
+    }
+    return years;
+  };
 
   const filteredHolidays = selectedYear
     ? holidays.filter(
-        (holiday) => holiday.year === parseInt(new Date(selectedYear).getFullYear())
+        (holiday) => holiday.year === parseInt(selectedYear)
       )
     : holidays;
 
@@ -70,14 +82,20 @@ const HolidayList = () => {
           <label className="block text-lg font-medium">
             Select Holiday Year:
           </label>
-        
-          <input
-            type="month"
-            value={selectedYear}
-            onChange={(e) => setSelectedYear(e.target.value)}
-            className="border border-gray-300 p-2 rounded w-full"
-            placeholder="Select year"
-          />
+
+          {/* Shadcn Year Picker */}
+          <Select onValueChange={(value) => setSelectedYear(value)} value={selectedYear}>
+            <SelectTrigger className="border border-gray-300 p-2 rounded w-full">
+              <SelectValue placeholder="Select year" />
+            </SelectTrigger>
+            <SelectContent>
+              {generateYearOptions().map((year) => (
+                <SelectItem key={year} value={year.toString()}>
+                  {year}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
 
         <div className="w-full max-w-md mb-6">

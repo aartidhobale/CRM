@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Menubar from "../components/Menubar";
 import { LoginSchema } from "../schema";
+import Link from "next/link";
 
 const LoginForm = () => {
   const { push } = useRouter();
@@ -115,7 +116,7 @@ const LoginForm = () => {
             )}
           </div>
 
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="block text-gray-700">Password</label>
             <input
               type="password"
@@ -134,14 +135,7 @@ const LoginForm = () => {
             )}
           </div>
 
-          <button
-            type="submit"
-            className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
-          >
-            Login
-          </button>
-
-          <div className="mt-4">
+          <div className="mb-2">
             <button
               type="button"
               className="text-blue-500 hover:underline"
@@ -150,6 +144,15 @@ const LoginForm = () => {
               Forgot Password?
             </button>
           </div>
+
+          <button
+            type="submit"
+            className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+          >
+            Login
+          </button>
+          <p className="text-center mt-2">Don't have an account? <Link href={'/signup'} className="text-blue-500">Register here.</Link></p>
+
         </form>
       ) : (
         <form

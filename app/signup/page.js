@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Menubar from "../components/Menubar";
-import { SignUpSchema } from "../schema.ts";
+import { SignUpSchema } from "../schema";
+import Link from "next/link";
 
 const SignUpForm = () => {
   const { push } = useRouter();
@@ -156,6 +157,7 @@ const SignUpForm = () => {
         >
           Sign Up
         </button>
+        <p className="text-center mt-2">Already have an account? <Link href={'/login'} className="text-blue-500">Login here.</Link></p>
       </form>
     </>
   );
