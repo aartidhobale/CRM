@@ -55,7 +55,7 @@ const HolidayList = () => {
     setEditingIndex(index);
   };
 
-  // Generate a list of years for the year picker
+ 
   const generateYearOptions = () => {
     const currentYear = new Date().getFullYear();
     const startYear = currentYear - 10;
@@ -76,14 +76,15 @@ const HolidayList = () => {
   return (
     <>
       <Menubar />
+      <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Holiday List</h1>
-      <div className="p-6 bg-gray-100 min-h-screen flex flex-col items-center">
+      <div  className="bg-gray-100 p-4 rounded-lg shadow-md max-w-lg mx-auto">
         <div className="mb-4 w-full max-w-md">
           <label className="block text-lg font-medium">
             Select Holiday Year:
           </label>
 
-          {/* Shadcn Year Picker */}
+        
           <Select onValueChange={(value) => setSelectedYear(value)} value={selectedYear}>
             <SelectTrigger className="border border-gray-300 p-2 rounded w-full">
               <SelectValue placeholder="Select year" />
@@ -173,6 +174,7 @@ const HolidayList = () => {
             {editingIndex !== null ? "Update Holiday" : "Add Holiday"}
           </button>
         </div>
+      </div>
       </div>
     </>
   );

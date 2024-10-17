@@ -55,7 +55,7 @@ const Menubar = () => {
                   </li>
                   <li className="p-2 hover:bg-gray-200 flex items-center">
                     <HiOutlineTemplate className="mr-2" />
-                    <a href="#">Template Manager</a>
+                    <a href="/settings/templatemanager">Template Manager</a>
                   </li>
                   <li className="p-2 hover:bg-gray-200 flex items-center">
                     <HiOutlineTemplate className="mr-2" />
@@ -124,7 +124,7 @@ const Menubar = () => {
               </li>
               <li className="p-2 hover:bg-gray-100 flex items-center">
                 <HiOutlineTemplate className="mr-2" />
-                Template Manager
+                <Link href="/settings/templatemanager">Template Manager</Link>  
               </li>
               <li className="p-2 hover:bg-gray-100 flex items-center">
                 <HiOutlineTemplate className="mr-2" />

@@ -45,8 +45,9 @@ const Specialization = () => {
   return (
     <>
       <Menubar />
+      <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-6">Specialization</h1>
-      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+      <div className="bg-gray-100 p-4 rounded-lg shadow-md max-w-lg mx-auto">
         <button
           className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mb-4"
           onClick={() => setShowForm(true)}
@@ -107,6 +108,7 @@ const Specialization = () => {
             )}
           </ul>
         </div>
+      </div>
       </div>
     </>
   );
